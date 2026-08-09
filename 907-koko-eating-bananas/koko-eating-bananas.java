@@ -1,14 +1,14 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int start=1;
-        int end= maxInArr(piles);
+        int end=maxNum(piles);
 
         while(start<=end){
-            int mid= start+(end-start)/2;
+            int mid = start+(end-start)/2;
 
-            long totalhrs= totalhrs(piles,mid);
+            long totalhr = timeReq(piles,mid); 
 
-            if(totalhrs<=h){
+            if(totalhr<=h){
                 end=mid-1;
             }else{
                 start=mid+1;
@@ -17,23 +17,20 @@ class Solution {
         return start;
     }
 
-    public long totalhrs(int[] piles, int h){
+    public long timeReq(int[] piles, int mid){
         long total=0;
 
         for(int i=0;i<piles.length;i++){
-            total += (piles[i] + h - 1) / h;
+            total+= (piles[i]+mid-1)/mid;
         }
-
         return total;
     }
 
-    public int maxInArr(int[] piles){
-        int maxNum=0;
-
+    public int maxNum(int[] piles){
+        int max=0;
         for(int i=0;i<piles.length;i++){
-            maxNum= Math.max(maxNum,piles[i]);
+            max= Math.max(piles[i],max);            
         }
-
-        return maxNum;
+        return max;
     }
 }
