@@ -1,15 +1,16 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ans= new ArrayList<>();
-        boolean[] check = new boolean[nums.length];
+        List<List<Integer>> ans = new ArrayList<>();
 
-        recursion(nums,ans,check,new ArrayList<>());
+        boolean[] check= new boolean[nums.length];
+
+        permutations(nums, ans, check, new ArrayList<>());
 
         return ans;
     }
 
-    public static void recursion(int[] nums,List<List<Integer>> ans,boolean[] check, List<Integer> subset){
-        if(nums.length==subset.size()){
+    public void permutations(int[] nums, List<List<Integer>> ans,boolean[] check, List<Integer> subset){
+        if(subset.size()==nums.length){
             ans.add(new ArrayList<>(subset));
             return;
         }
@@ -22,11 +23,10 @@ class Solution {
             subset.add(nums[i]);
             check[i]=true;
 
-            recursion(nums,ans,check,subset);
+            permutations(nums, ans, check, subset);
 
             subset.remove(subset.size()-1);
             check[i]=false;
-
         }
     }
 }
