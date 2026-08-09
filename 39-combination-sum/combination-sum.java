@@ -2,28 +2,27 @@ class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
 
-        combinational(target,candidates,ans,0,new ArrayList<>());
+        candidate(candidates,target, 0, new ArrayList<>(),ans);
 
         return ans;
     }
 
-    public static void combinational(int target, int[] candidates,List<List<Integer>> ans,int index, List<Integer> current){
+    public void candidate(int[] candidates, int target, int index, List<Integer> newans, List<List<Integer>> ans){
         if(target==0){
-            ans.add(new ArrayList<>(current));
+           ans.add(new ArrayList<>(newans));
+           return;
+        }
+
+        if(target<0 || candidates.length==index){
             return;
         }
 
-        if(target<0 || index==candidates.length){
-            return;
-        }
+        newans.add(candidates[index]);
 
-        current.add(candidates[index]);
+        candidate(candidates,target-candidates[index], index, newans, ans);
 
-        combinational(target-candidates[index],candidates,ans,index,current);
+        newans.remove(newans.size()-1);
 
-        current.remove(current.size()-1);
-
-        combinational(target,candidates,ans,index+1,current);
-
+        candidate(candidates,target, index+1, newans, ans);
     }
 }
