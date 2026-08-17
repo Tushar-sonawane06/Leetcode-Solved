@@ -21,10 +21,16 @@ class MyQueue {
 
     
     public int pop() {
+        if(s1.isEmpty()){
+            return -1;
+        }
         return s1.pop();
     }
     
     public int peek() {
+        if(s1.isEmpty()){
+            return -1;
+        }
         return s1.peek();
     }
     
