@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     public int minInsertions(String s) {
 
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> stack = new ArrayDeque<>();
         int ans = 0;
 
         for (int i = 0; i < s.length(); i++) {
