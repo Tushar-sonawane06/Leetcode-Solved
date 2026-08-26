@@ -1,15 +1,15 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
+        List<List<Integer>> ans=new ArrayList<>();
+        boolean[] check=new boolean[nums.length];
 
-        boolean[] check= new boolean[nums.length];
-
-        permutations(nums, ans, check, new ArrayList<>());
+        backtracking(ans,new ArrayList<>(),nums,check);
 
         return ans;
     }
 
-    public void permutations(int[] nums, List<List<Integer>> ans,boolean[] check, List<Integer> subset){
+    public void backtracking(List<List<Integer>> ans,List<Integer> subset,int[] nums,boolean[] check){
+
         if(subset.size()==nums.length){
             ans.add(new ArrayList<>(subset));
             return;
@@ -19,12 +19,9 @@ class Solution {
             if(check[i]){
                 continue;
             }
-
             subset.add(nums[i]);
             check[i]=true;
-
-            permutations(nums, ans, check, subset);
-
+            backtracking(ans,subset,nums,check);
             subset.remove(subset.size()-1);
             check[i]=false;
         }
