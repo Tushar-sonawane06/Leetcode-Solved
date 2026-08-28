@@ -4,16 +4,14 @@ class Solution {
         int end=0;
 
         for(int i=0;i<nums.length;i++){
-            start=Math.max(nums[i],start);
+            start=Math.max(start,nums[i]);
             end+=nums[i];
         }
 
         while(start<end){
-            int mid= start+(end-start)/2;
-
+            int mid=start+(end-start)/2;
             int sum=0;
             int pieces=1;
-
             for(int i=0;i<nums.length;i++){
                 if(sum+nums[i]>mid){
                     sum=nums[i];
