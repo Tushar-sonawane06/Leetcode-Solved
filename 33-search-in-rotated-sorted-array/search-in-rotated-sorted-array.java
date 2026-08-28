@@ -1,11 +1,10 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int pivot = findPivot(nums);
+        int pivot = pivotSearch(nums);
 
-        if (pivot == 0) {
-            return binarySearch(nums, target, 0, nums.length - 1);
+        if(pivot==0){
+            return binarySearch(nums,target,0,nums.length-1);
         }
-
         if(target>=nums[0]){
             return binarySearch(nums,target,0,pivot-1);
         }else{
@@ -14,14 +13,13 @@ class Solution {
 
     }
 
-    public int binarySearch(int[] nums,int target,int start, int end){
+    public int binarySearch(int[] nums, int target, int start, int end){
         while(start<=end){
-            int mid=start+(end-start)/2;
+            int mid= start+(end-start)/2;
 
             if(nums[mid]==target){
                 return mid;
             }
-
             if(target<nums[mid]){
                 end=mid-1;
             }else{
@@ -30,10 +28,9 @@ class Solution {
         }
         return -1;
     }
-    
-    public int findPivot(int[] nums){
+    public int pivotSearch(int[] nums){
         int start=0;
-        int end=nums.length-1;
+        int end= nums.length-1;
 
         while(start<=end){
             int mid=start+(end-start)/2;
@@ -41,7 +38,7 @@ class Solution {
             if(mid<end && nums[mid]>nums[mid+1]){
                 return mid+1;
             }
-            if(mid>start && nums[mid]<nums[mid-1]){
+            if(mid>start &&nums[mid]<nums[mid-1]){
                 return mid;
             }
 
