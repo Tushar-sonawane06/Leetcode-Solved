@@ -14,10 +14,32 @@ class Solution {
             return;
         }
 
-        ListNode mid = mid(head);
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        ListNode newHead=slow.next;
+        slow.next=null;
 
-        ListNode curr=mid.next;
-        mid.next=null;
+        ListNode right = reverse(newHead);
+        ListNode left=head;
+
+        while(left!=null && right!=null){
+            ListNode temp1=left.next;
+            ListNode temp2=right.next;
+
+            left.next=right;
+            right.next=temp1;
+
+            left=temp1;
+            right=temp2;
+        }
+
+    }
+    public ListNode reverse(ListNode newHead){
+        ListNode curr=newHead;
         ListNode prev=null;
         ListNode next;
         while(curr!=null){
@@ -26,28 +48,6 @@ class Solution {
             prev=curr;
             curr=next;
         }
-
-        ListNode left=head;
-        ListNode right=prev;
-        while(left!=null && right!=null){
-            ListNode temp1 = left.next;
-            ListNode temp2 = right.next;
-
-            left.next = right;
-            right.next = temp1;
-
-            left = temp1;
-            right = temp2;
-        }
-    }
-
-    public ListNode mid(ListNode head){
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        }
-        return slow;
+        return prev;
     }
 }
