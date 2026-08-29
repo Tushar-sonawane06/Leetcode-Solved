@@ -12,7 +12,7 @@ class Solution {
     public ListNode sortList(ListNode head) {
         if(head==null || head.next==null){
             return head;
-        }   
+        }
 
         ListNode mid = getMid(head);
 
@@ -21,9 +21,8 @@ class Solution {
 
         return merge(left,right);
     }
-
     public ListNode merge(ListNode list1, ListNode list2){
-        ListNode dummy= new ListNode(0);
+        ListNode dummy = new ListNode();
         ListNode tail=dummy;
 
         while(list1!=null && list2!=null){
@@ -41,11 +40,11 @@ class Solution {
 
         return dummy.next;
     }
-
     public ListNode getMid(ListNode head){
         ListNode prev=null;
         ListNode slow=head;
         ListNode fast=head;
+
         while(fast!=null && fast.next!=null){
             prev=slow;
             slow=slow.next;
