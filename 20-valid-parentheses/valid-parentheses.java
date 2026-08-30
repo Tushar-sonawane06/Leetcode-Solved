@@ -1,28 +1,26 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> sk=new Stack<>();
-
+        Deque<Character> stack=new ArrayDeque<>();
         for(int i=0;i<s.length();i++){
-            char curr = s.charAt(i);
-
-            if(curr=='('||curr=='['||curr=='{'){
-                sk.push(curr);
+            char ch=s.charAt(i);
+            if(ch=='(' || ch=='[' || ch=='{'){
+                stack.push(ch);
             }else{
-                if(sk.isEmpty()){
+                if(stack.isEmpty()){
                     return false;
                 }
-                if(sk.peek()=='(' && curr== ')' || sk.peek()=='[' && curr==']' || sk.peek()=='{' && curr=='}'){
-                    sk.pop();
+                if(stack.peek()=='(' && ch==')' || stack.peek()=='[' && ch==']' || stack.peek()=='{' && ch=='}'){
+                    stack.pop();
                 }else{
                     return false;
                 }
             }
-
         }
-        if(sk.isEmpty()){
+        if(stack.isEmpty()){
             return true;
         }else{
             return false;
         }
+
     }
 }
