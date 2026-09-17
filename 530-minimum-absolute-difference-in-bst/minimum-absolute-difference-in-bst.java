@@ -17,15 +17,11 @@ class Solution {
     Integer prev=null;
     int min=Integer.MAX_VALUE;
     public int getMinimumDifference(TreeNode root) {
-        helper(root);
-        return min;
-    }
-    public void helper(TreeNode root){
         if(root==null){
-            return;
+            return 0;
         }
 
-        helper(root.left);
+        getMinimumDifference(root.left);
 
         if(prev!=null){
             min = Math.min(min,root.val-prev);
@@ -33,6 +29,8 @@ class Solution {
 
         prev=root.val;
 
-        helper(root.right);
+        getMinimumDifference(root.right);
+        return min;
     }
+    
 }
