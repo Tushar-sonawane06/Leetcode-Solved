@@ -27,9 +27,9 @@ class Solution {
             return null;
         }
 
-        Node leftmost=root;
-        while(leftmost.left!=null){
-            Node curr=leftmost;
+        Node current = root;
+        while(current.left!=null){
+            Node curr=current;
             while(curr!=null){
                 curr.left.next=curr.right;
                 if(curr.next!=null){
@@ -37,7 +37,7 @@ class Solution {
                 }
                 curr=curr.next;
             }
-            leftmost=leftmost.left;
+            current=current.left;
         }
         return root;
     }
