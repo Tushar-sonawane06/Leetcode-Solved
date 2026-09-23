@@ -1,5 +1,9 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
+          if(n ==0 || edges == null) {
+            return false;
+        }
+        
         List<List<Integer>> graph = new ArrayList<>();
 
         for(int i=0;i<n;i++){
