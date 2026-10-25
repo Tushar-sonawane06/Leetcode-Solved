@@ -13,21 +13,22 @@ class Solution {
         }
         return count;
     }
-    public boolean helper(int[][] grid,int row,int col){
-        if(row<0 || col<0 || row>=grid.length || col>=grid[0].length){
+
+    public boolean helper(int[][] grid, int row,int col){
+        if(row<0|| col<0 ||row>=grid.length||col>=grid[0].length){
             return false;
         }
 
         if(grid[row][col]==1){
             return true;
-        }   
-        
+        }
+
         grid[row][col]=1;
 
-        boolean down = helper(grid,row+1,col);
         boolean up = helper(grid,row-1,col);
-        boolean right = helper(grid,row,col+1);
+        boolean down = helper(grid,row+1,col);
         boolean left = helper(grid,row,col-1);
+        boolean right = helper(grid,row,col+1);
 
         return down && up && right && left;
     }
